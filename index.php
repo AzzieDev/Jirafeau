@@ -292,11 +292,25 @@ elseif (true === jirafeau_challenge_upload_ip($cfg, get_ip_address($cfg))) {
 
 <script type="text/javascript" lang="Javascript">
 // @license magnet:?xt=urn:btih:0b31508aeb0634b347b8270c7bee4d411b5d4109&dn=agpl-3.0.txt AGPL-v3-or-Later
+    const pasteInput = document.getElementById("file_select");
     document.getElementById('error_pop').style.display = 'none';
     document.getElementById('uploading').style.display = 'none';
     document.getElementById('upload_finished').style.display = 'none';
     document.getElementById('options').style.display = 'none';
     document.getElementById('send').style.display = 'none';
+
+   //listen for paste input from clipboard
+    window.addEventListener('paste', e => {
+        pasteInput.files = e.clipboardData.files;
+        // add class to restyle upload form in next step
+        document.getElementById('upload').setAttribute('class', 'file-selected');
+        // display options
+        document.getElementById('options').style.display = 'block';
+        document.getElementById('send').style.display = 'block';
+        document.getElementById('error_pop').style.display = 'none';
+        document.getElementById('send').focus();
+    });
+    
     if (!check_html5_file_api ())
         document.getElementById('max_file_size').innerHTML = '<?php
             $max_size = jirafeau_get_max_upload_size();
