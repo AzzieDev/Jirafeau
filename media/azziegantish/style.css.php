@@ -30,9 +30,4 @@ header('Content-type: text/css');
 
 ?>
 
-/* ==========================================================================
-   Elegantish Template - JordyV - http://jordyvalentine.com/
-   CSS Seperated from PHP
-   This is a preference of the template developer, feel free to move it back.
-   ========================================================================== */
-@import url(elegantish.css);
+@import url(azziegantish.css);
